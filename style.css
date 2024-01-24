@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Spice&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.design {
+    display: flex;
+    height: 100vh;
+}
+
+.container1 {
+    flex: 1.2;
+
+}
+
+.header {
+    text-align: center;
+    margin-top: -100px;
+    margin-bottom: -110px;
+
+}
+
+.logo img {
+    max-width: 100%;
+}
+
+.content {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.login {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+#inputuq1, #inputuq2, #inputuq3, #inputuq4, #inputuq5,
+#inputuq6, #inputuq7, #inputuq8 {
+    border: 1px solid black;
+    margin-bottom: 10px;
+}
+
+.input {
+    height: 50px;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    border-radius: 10px;
+    padding: 0 15px;
+}
+
+.input input {
+    border: none;
+    background: none;
+    outline: none;
+    height: 100%;
+    width: 100%;
+    margin-left: 10px;
+}
+
+.input label {
+    display: block;
+    margin-bottom: 15px;
+}
+
+h2 {
+    text-transform: uppercase;
+    font-style: italic;
+    margin-bottom: 50px;
+    font-family: 'Bungee Spice', sans-serif;
+}
+
+.input input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+.input input[type="submit"] {
+    background-color: #111111;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.input a {
+    color: black;
+    text-decoration: none;
+    margin-left: 85px;
+}
+
+span {
+    color: midnightblue;
+    font-weight: bold;
+}
+
+span:hover {
+    text-decoration: underline;
+}
+
+.imagecontainer {
+    flex: 1.8;
+    overflow: hidden;
+    position: relative;
+    border-radius: 60px 0 0 0px;
+}
+
+.imagecontainer img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.space {
+    margin-top: 80px;
+}
+
+label {
+    font-weight: bold;
+}
+
+#signupbox {
+    margin-top: 20px;
+}
+
+#gender, #profile_picture {
+    margin-left: 20px;
+    align-items: center;
+}
+

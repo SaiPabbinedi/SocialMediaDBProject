@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SnapTrend | Profile</title>
+    <link rel="stylesheet" href="/profilepage.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="title">
+                <h4>SnapTrend</h4>
+            </div>
+            <div class="nav-links">
+                <ul>
+                    <li><a href="/dashboard.html">Home</a></li>
+                    <li><a href="#">Profile</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="background-blur"></div>
+        <div class="profile-container">
+            <div class="profile">
+                <div class="profile1">
+                    <img src="" id="profile-image" alt="profile-picture" height="320px" width="320px">
+                </div>
+                <div class="profile-info">
+                    <div class="uname">
+                        <img src="/vectoricons/user.svg" id="uname" alt="uname" height="20px" width="20px">
+                        <img src="/vectoricons/at.svg" id="mail" alt="mail" height="20px" width="20px">
+                        <p id="username"></p>
+                    </div>
+                    <div class="mail">
+                        <img src="/vectoricons/envelope.svg" id="mail" alt="mail" height="20px" width="20px">
+                        <p id="email"></p>
+                    </div>
+                    <div class="birthday">
+                        <img src="/vectoricons/birthday-cake.png" id="birthday" alt="birthday" height="20px" width="20px">
+                        <p id="birthday-day"></p>
+                    </div>
+                    <div class="age">
+                        <img src="/vectoricons/age.png" id="age" alt="age" height="20px" width="20px">
+                        <p id="user-age"></p>
+                    </div>
+                    <div class="gender">
+                        <img src="/vectoricons/gender.png" id="gender" alt="gender" height="20px" width="20px">
+                        <p id="gender1"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="profile-interest">
+                <div class="logo">
+                    <img src="/Resources/Screenshot_2024-01-07_141349-removebg-preview (1).png" alt="logo">
+                </div>
+                <div class="bio">
+                    <img src="/vectoricons/signature.png" id="bio" alt="bio" height="40px" width="40px">
+                    <p id="bio1">Bio</p>
+                    <p id="interest"></p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const storedUsername = sessionStorage.getItem('username');
+            const userData = await fetchUserData(storedUsername);
+
+            const profileImageElement = document.getElementById('profile-image');
+            profileImageElement.src = `/${userData.picture_path}`;
+
+            const usernameElement = document.getElementById('username');
+            usernameElement.textContent = storedUsername;
+
+            const emailElement = document.getElementById('email');
+            emailElement.textContent = userData.email || '';
+
+            const birthdayElement = document.getElementById('birthday-day');
+            const ageElement = document.getElementById('user-age');
+            const birthdayDate = new Date(userData.birthday);
+
+            const today = new Date();
+            const age = today.getFullYear() - birthdayDate.getFullYear();
+            const isBirthdayPassed = today.getMonth() > birthdayDate.getMonth() || 
+                    (today.getMonth() === birthdayDate.getMonth() && today.getDate() >= birthdayDate.getDate());
+
+            const finalAge = isBirthdayPassed ? age : age - 1;
+
+            const options = {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric'
+            };
+
+            const formattedBirthday = birthdayDate.toLocaleDateString('en-US', options);
+            const birthdayWithAge = `${formattedBirthday}`;
+
+            birthdayElement.textContent = birthdayWithAge || '';
+            ageElement.textContent = `Age: ${finalAge}`;
+
+            const genderElement = document.getElementById('gender1');
+            genderElement.textContent = userData.gender || '';
+
+            const interestsElement = document.getElementById('interest');
+            interestsElement.textContent = userData.bio || '';
+        });
+
+        async function fetchUserData(username) {
+            try {
+                const response = await fetch(`http://localhost:5501/api/getUserData?username=${username}`);
+
+                if (!response.ok) {
+                    throw new Error('Failed to fetch user data');
+                }
+                const userData = await response.json();
+                return userData;
+            } catch (error) {
+                console.error('Error fetching user data:', error);
+                throw error;
+            }
+        }
+    </script>
+</body>
+</html>

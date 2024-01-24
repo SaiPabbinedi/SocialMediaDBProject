@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="user-profile">
+        <img id="profile-picture" src="<%= picturePath %>" alt="User Profile Picture">
+    </div>
+
+    <script>
+        const picturePath = "<%= picturePath %>";
+        const imgElement = document.getElementById('profile-picture');
+        imgElement.src = picturePath;
+    </script>
+</body>
+</html>

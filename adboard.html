@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Data Form</title>
+  <link rel="stylesheet" href="adboard.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Image Data Form</h1>
+    <form id="imageForm" action="/api/insertAd" method="POST" enctype="multipart/form-data">
+        <!-- ... other form inputs ... -->
+        <label for="advertiser_name">Advertiser Name:</label>
+        <input type="text" id="advertiser_name" name="advertiser_name" required>
+        
+        <label for="url_link">URL Link:</label>
+        <input type="url" id="url_link" name="url_link" required>
+      
+        <label for="adpicture">Ad Picture:</label>
+        <input type="file" id="adpicture" name="adpicture" accept="image/*" required>
+        <!-- ... other form inputs ... -->
+      
+        <button type="submit">Submit</button>
+      </form>
+      
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

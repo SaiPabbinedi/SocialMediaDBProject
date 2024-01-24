@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SnapTrend</title>
+    <link rel="icon" type="image/x-icon" href="/Resources/Screenshot_2024-01-07_141349-removebg-preview (1).png">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="design">
+        <div class="container1">
+            <div class="header">
+                <div class="logo">
+                    <img src="/Resources/Screenshot_2024-01-07_141349-removebg-preview.png" alt="logo">
+                </div>
+            </div>
+            <div class="content">
+                <div class="login" id="up">
+                    <form id="signupbox" enctype="multipart/form-data">
+                        <div class="input" id="inputuq1">
+                            <label for="username"></label>
+                            <img src="/vectoricons/user.svg" alt="username" height="20px" width="20px">
+                            <input type="text" name="username" id="username" placeholder="Username" required>
+                        </div>
+                        <div class="input" id="inputuq2">
+                            <label for="email"></label>
+                            <img src="/vectoricons/envelope.svg" alt="email" height="20px" width="20px">
+                            <input type="email" name="email" id="email" placeholder="Email" required>
+                        </div>
+                        <div class="input" id="inputuq3">
+                            <label for="gender"></label>
+                            <img src="/vectoricons/gender.png" alt="gender" height="20px" width="20px">
+                            <!-- <input type="text" name="firstname" id="firstname" placeholder="Firstname" required> -->
+                            <select id="gender">
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                        <div class="input" id="inputuq4">
+                            <label for="birthday"></label>
+                            <img src="/vectoricons/birthday-cake.png" alt="birthday" height="20px" width="20px">
+                            <!-- <input type="text" name="lastname" id="lastname" placeholder="Lastname" required> -->
+                            <input type="date" id="birthday" name="birthday" required>
+                        </div>
+                        <div class="input" id="inputuq5">
+                            <label for="bio"></label>
+                            <img src="/vectoricons/heart.svg" alt="bio" height="20px" width="20px">
+                            <input type="text" name="bio" id="bio" placeholder="Interests" required>
+                        </div>
+                        <div class="input" id="inputuq6">
+                            <label for="password"></label>
+                            <img src="/vectoricons/lock.svg" alt="password" height="20px" width="20px">
+                            <input type="password" name="password" id="password" placeholder="Password" required>
+                        </div>
+                        <div class="input" id="inputuq7">
+                            <img src="/vectoricons/shield-check.svg" alt="password1" height="20px" width="20px">
+                            <input type="password" name="password1" id="password1" placeholder="Re-Enter the Password" required>
+                        </div>
+                        <div class="input" id="inputuq8">
+                            <img src="/vectoricons/picture.png" alt="picture" height="20px" width="20px">
+                            <div class="uploadwrapper">
+                                <input type="file" name="profile_picture" id="profile_picture" accept="image/*">
+                            </div>
+                        </div>
+                        <div class="input">
+                            <input type="submit" value="Sign up">
+                        </div>
+                        <div class="input">
+                            <a href="/signin.html">Already have an account?<span>Sign in</span></a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="imagecontainer">
+            <!-- <img src="/Resources/Background-glassmorphic.jpg" alt="image"> -->
+            <img src="/Resources/original-ff7ae68989cc635b20b5bdb4ca5839c4.png" alt="image">
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('signupbox');
+        
+            form.addEventListener('submit', async function (event) {
+                event.preventDefault();
+        
+                const username = document.getElementById('username').value;
+                const email = document.getElementById('email').value;
+                const gender = document.getElementById('gender').value;
+                const birthday = document.getElementById('birthday').value;
+                const bio = document.getElementById('bio').value;
+                const password = document.getElementById('password').value;
+                const password1 = document.getElementById('password1').value;
+                
+                const profilePictureInput = document.getElementById('profile_picture');
+                const profilePictureFile = profilePictureInput.files[0];
+
+                const formData = new FormData();
+                formData.append('username', username);
+                formData.append('email', email);
+                formData.append('gender', gender);
+                formData.append('birthday', birthday);
+                formData.append('bio', bio);
+                formData.append('password', password);
+                formData.append('password1', password1);
+                formData.append('profile_picture', profilePictureFile);
+        
+                try {
+                    const response = await fetch('http://localhost:5501/signup', {
+                        method: 'POST',
+                        body: formData,
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+        
+                    const data = await response.json();
+        
+                    if (data.success) {
+                        //alert(data.message);
+                        window.location.href = './signin.html';
+                    } else {
+                        alert('Signin failed');
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('An error occurred. Please try again later.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

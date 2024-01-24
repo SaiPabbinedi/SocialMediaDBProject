@@ -1,0 +1,155 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    overflow: hidden;
+    transition: background 1s ease;
+    background-image: url(./Resources/jean-vella-icdVDptHxpM-unsplash-1024x683\ \(1\).jpg);
+}
+
+.background-blur {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    backdrop-filter: blur(100px); /* Adjust the blur amount */
+    z-index: -1;
+}
+
+header {
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+    font-size: 36px;
+    font-weight: 600;
+    color: #000;
+    text-align: center;
+    padding: 20px;
+
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10%;
+    height: 10vh;
+}
+
+.nav-links ul {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin-right: 20px;
+}
+
+.nav-links a {
+    color: #000;
+    text-decoration: none;
+}
+
+.nav-links a:hover {
+    color: #555;
+}
+
+.main {
+    padding: 20px;
+}
+
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    height: 400px;
+}
+
+.profile1 {
+    width: 320px;
+    height: 320px;
+    overflow: hidden;
+    border-radius: 10%;
+}
+
+#profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    color: #000;
+    align-items: center;
+    border: #000 solid 1px;
+    border-radius: 20px;
+    background-color: white;
+    padding: 20px;
+}
+
+.uname, .mail, .birthday, .age, .gender {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 28px;
+    font-family: poppins;
+}
+
+.uname img, .mail img, .birthday img, .age img, .gender img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.profile-interest {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 20px;
+}
+
+.logo img {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.bio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border: #000 solid 1px;
+    background-color: antiquewhite;
+    border-radius: 10px;
+    padding: 50px;
+    margin: 50px;
+}
+
+#bio {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 10px;
+}
+
+#interest {
+    margin: 0;
+}

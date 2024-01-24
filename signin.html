@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SnapTrend</title>
+    <link rel="icon" type="image/x-icon" href="/Resources/Screenshot_2024-01-07_141349-removebg-preview (1).png">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="design">
+        <div class="container1">
+            <div class="header">
+                <div class="logo">
+                    <img src="/Resources/Screenshot_2024-01-07_141349-removebg-preview.png" alt="logo">
+                </div>
+            </div>
+            <div class="space">
+            </div>
+            <div class="content">
+                <div class="login">
+                    <h2>Share Life, Share Moments Your Stories, Our Platform.</h2>
+                    <form  id="loginbox">
+                        <div class="input" id="inputuq1">
+                            
+                            <label for="username"></label>
+                            <img src="/vectoricons/user.svg" alt="username" height="20px" width="20px">
+                            <input type="text" name="username" id="username" placeholder="Username" required>
+                        </div>
+                        <div class="input" id="inputuq2">
+                            <label for="password"></label>
+                            <img src="/vectoricons/lock.svg" alt="username" height="20px" width="20px">
+                            <input type="password" name="password" id="password" placeholder="Password" required>
+                        </div>
+                        <div class="input" id="submitbtn">
+                            <input type="submit" value="Sign in">
+                        </div>
+                        <div class="input">
+                            <a href="/signup.html">Don't have an account?<span>Sign up</span></a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="imagecontainer">
+            <!-- <img src="/Resources/Background-glassmorphic.jpg" alt="image"> -->
+            <img src="/Resources/original-ff7ae68989cc635b20b5bdb4ca5839c4.png" alt="image">
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('loginbox');
+        
+            form.addEventListener('submit', async function (event) {
+                event.preventDefault();
+        
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+                try {
+                    const response = await fetch('http://localhost:5501/signin', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ username, password }),
+                    });
+        
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+        
+                    const data = await response.json();
+        
+                    if (data.success) {
+                        sessionStorage.setItem('username', username);
+                        window.location.href = './dashboard.html';
+                    } else {
+                        alert('Login failed');
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('An error occurred. Please try again later.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

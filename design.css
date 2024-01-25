@@ -141,7 +141,7 @@ header {
     display: flex;
     position: fixed;
     z-index: 10;
-    width: 80%;
+    width: 60%;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
@@ -242,7 +242,7 @@ button .fa-solid {
     display: flex;
     flex-direction: column;
     height: 100%;
-    width: 80%;
+    width: 60%;
     max-width: 100%;
     transition: margin-left 0.5s ease;
     margin-left: 0;
@@ -339,7 +339,7 @@ hr {
 
 .adboard {
     height: 1vh;
-    width: 20%;
+    width: 40%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -374,6 +374,12 @@ hr {
     border-radius: 20px;
     border: #000 solid 1px;
     background-color: #000;
+}
+
+#adimage {
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
 }
 
 .trendsnap {

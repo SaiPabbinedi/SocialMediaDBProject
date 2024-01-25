@@ -231,6 +231,23 @@ async function fetchUserDataFromDatabase(username) {
   }
 }
 
+app.post('/api/getAdData', async (req, res) => {
+  try {
+    console.log(req.body);
+    const {advertiser_id}= req.body;    
+    const adData = await pool.query(
+      'SELECT advertiser_name, url_link, adpicture_path FROM advertisers WHERE advertiser_id = $1',
+      [advertiser_id]
+    );
+    
+
+      res.json(adData.rows[0]);
+  } catch (error) {
+      console.error('Error fetching user data:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
 // Function to generate a random integer between min and max (inclusive)
 // function randomInt1(min, max) {
 //   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -253,6 +270,22 @@ async function fetchUserDataFromDatabase(username) {
    
 //   }
 // }
+
+async function fetchAdDataFromDatabase(advertiser_name) {
+  try {
+      const queryResult = await pool.query(
+          'SELECT advertiser_name, url_link, adpicture_path FROM public.advertisers WHERE user_name = $1',
+          [advertiser_name]
+      );
+
+      const adData = queryResult.rows[0];
+
+      return adData;
+  } catch (error) {
+      console.error('Error fetching user data from the database:', error);
+      throw error; 
+  }
+}
 
 
 app.listen(port, () => {
